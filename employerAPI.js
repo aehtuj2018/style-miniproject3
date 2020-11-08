@@ -28,48 +28,27 @@ app.put('/update',(req,res)=>{
     const keys=object.keys(request.body);
     keys.forEach(key=>{
         employee[key]=request.body[key];
-    })
+    });
     
-
 
 });
 
+//delete 
 
+app.delete('/delete',(req,res)=>{
 
-//post 
+    const requestID=request.params.ID;
+ 
+    let employee=Employees.filter(employee=>{
+        return employee.ID==requestID;
 
+    })[0];
 
-app.post('/',function(req,res){
+    const index = employee.indexOf(employee);
 
-    if(!('id' in req.body))
-    {
-        res.send('ID value is missing');
-        return;
-    }
-
-    if(!('name' in req.body))
-    {
-        res.send('Name value is missing');
-        return;
-    }
-
-    if(!('department' in req.body))
-    {
-        res.send('Departement value is missing');
-        return;
-    }
-
-    if(!('salary' in req.body))
-    {
-        res.send('salary value is missing');
-        return;
-    }
+    contacts.splice(index,1);
     
-    employers.push(req.body);
-    //res.send(employers);
-
-    res.redirect('/');
-});
+})
 
 
 
